@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <title>{Title}</title>
+
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	{block:Description}
+	<meta name="description" content="{MetaDescription}" />
+	{/block:Description}
+
+	<link href='http://fonts.googleapis.com/css?family=Roboto:regular|Droid+Serif|Noticia+Text' rel='stylesheet' type='text/css'>
+	<link href="http://srv.cslr.cc/reset.css" rel="stylesheet" type="text/css">
+	<link href="http://dl.dropbox.com/u/799600/tumblr.css" rel="stylesheet" type="text/css">
+
+	<meta charset="utf-8">
+
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	{block:IndexPage}
+	<meta property="og:title" content="{PlaintextTitle}"/>
+	<meta property="og:url" content="http://cslr.cc"/>
+	<meta property="og:image" content="http://assets.tumblr.com/images/logo.png"/>
+	<meta property="og:description" content="{MetaDescription}"/>
+	{/block:IndexPage}{block:PermalinkPage}{block:Posts}
+	{block:Text}<meta property="og:title" content="{block:PostTitle}{PlaintextPostTitle} {/block:PostTitle}"/>{/block:Text}
+	{block:Quote}<meta property="og:title" content="Quote: {block:PostSummary}{PlaintextPostSummary}{/block:PostSummary}"/>{/block:Quote}
+	{block:Link}<meta property="og:title" content="Link: {PlaintextName}"/>{/block:Link}
+	{block:Chat}<meta property="og:title" content="Chat: {block:Title}{PlaintextTitle}{/block:Title}"/>{/block:Chat}
+	{block:Photo}<meta property="og:title" content="Photo: {block:Caption}{PlaintextCaption}{/block:Caption}"/>
+	<meta property="og:image" content="{PhotoURL-500}"/>{/block:Photo}
+	{block:Audio}<meta property="og:title" content="Audio: {block:Caption}{PlaintextCaption}{/block:Caption}"/>{/block:Audio}
+	{block:Video}<meta property="og:title" content="Video: {block:Caption}{PlaintextCaption}{/block:Caption}"/>{/block:Video}
+	{/block:Posts}<meta property="og:url" content="{Permalink}"/>{/block:PermalinkPage}
+	<meta property="og:site_name" content="0x4D"/>
+	<meta property="fb:app_id" content="101766816613359"/>
+	<meta property="fb:admins" content="100000177753910"/>
+	<meta property="og:type" content="blog"/>
+
+</head>
+<body>
+
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId  : '101766816613359',
+				status : true, // check login status
+				cookie : true, // enable cookies to allow the server to access the session
+				xfbml  : true  // parse XFBML
+			});
+		};
+
+		(function() {
+			var e = document.createElement('script');
+			e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+		}());
+	</script>
+
+	<div class="container">
+
+		<ul class="main">
+			<a href="/"><li id="logo">{Title}</li></a>
+			<a href="/ask"><li id="ask">Ask me a question</li></a>
+			<a href="http://twitter.com/bl2nk"><li id="twitter"></li></a>
+			<a href="http://facebook.com/go4more"><li id="facebook"></li></a>
+			<a href="/rss"><li id="rss"></li></a>
+		</ul>
+
+		<div class="content">
+
+			{block:Posts}
+
+			{block:Text}
+			<div class="post text">
+				{block:Title}
+				<h2 class="text"><a href="{Permalink}">{Title}</a></h2>
+				{/block:Title}
+				
+				{Body}
+
+				{block:Date}
+				<p class="meta">{TimeAgo} &middot; <a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a></p>
+				{/block:Date}
+                
+                {block:PermalinkPage}
+                <div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+                {/block:PermalinkPage}
+			</div> <!-- class="post text" -->
+			{/block:Text}
+
+
+			{block:Link}
+			<div class="post link">
+				<h2 class="link"><a href="{URL}" {Target}>{Name}</a> &rarr;</h2>
+				
+				{block:Description}
+				{Description}
+				{/block:Description}
+
+				{block:Date}
+				<p class="meta">{TimeAgo} &middot; <a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; <a href="{Permalink}">Permalink</a></p>
+				{/block:Date}
+                
+                {block:PermalinkPage}
+                <div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+                {/block:PermalinkPage}
+			</div> <!-- class="post link" -->
+			{/block:Link}
+
+
+			{block:Photo}
+			<div class="post pic">
+				<img src="{PhotoURL-500}" alt="{PhotoAlt}" class="pic" />
+				
+				{block:Caption}
+				<p class="desc">{Caption}</p>
+				{/block:Caption}
+
+				{block:Date}
+				<p class="meta">{TimeAgo} &middot; <a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; <a href="{Permalink}">Permalink</a></p>
+				{/block:Date}
+                
+                {block:PermalinkPage}
+                <div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+                {/block:PermalinkPage}
+			</div> <!-- class="post pic" -->
+			{/block:Photo}
+
+
+			{block:Video}
+			<div class="post video">
+				{Video-500}
+
+				{block:Caption}
+				<p class="desc">{Caption}</p>
+				{/block:Caption}
+
+				{block:Date}
+				<p class="meta">{TimeAgo} &middot; <a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; <a href="{Permalink}">Permalink</a></p>
+				{/block:Date}
+                
+                {block:PermalinkPage}
+                <div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+                {/block:PermalinkPage}
+			</div> <!-- class="post video" -->
+			{/block:Video}
+
+
+			{block:Quote}
+			<div class="post quote">
+				<p class="quote">&bdquo; {Quote} &ldquo;</p>
+
+				{block:Source}
+				<p class="source">- {Source}</p>
+				{/block:Source}
+
+				{block:Date}
+				<p class="meta">{TimeAgo} &middot; <a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; <a href="{Permalink}">Permalink</a></p>
+				{/block:Date}
+                
+                {block:PermalinkPage}
+                <div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+                {/block:PermalinkPage}
+			</div> <!-- class="post quote" -->
+			{/block:Quote}
+			
+			{block:PermalinkPage}
+			<div><br/><fb:comments href="{URLEncodedPermalink}" width="500"></fb:comments></div>
+			{/block:PermalinkPage}
+
+			{/block:Posts}
+
+
+			<div id="footer">
+				{block:PreviousPage}
+				<a href="{PreviousPage}">&lt; Zur&uuml;ck</a>
+				{/block:PreviousPage}
+				{block:NextPage}
+				<a href="{NextPage}">Vor &gt;</a>
+				{/block:NextPage}</td>
+				<a href="/archive">Archiv</a>
+			</div>
+
+		</div> <!-- class="content" -->
+
+	</div> <!-- class="container" -->
+
+</body>
+</html>
