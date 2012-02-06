@@ -1,0 +1,25 @@
+.post {
+	margin-bottom: 100px;
+}
+h6 {
+	margin-bottom: 10px;
+}
+h6 a {
+	color: inherit;
+}
+h1,h2,h3 {
+	font-family: "Noticia Text", serif;
+	font-weight: normal;
+}
+.video {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+blockquote {
+	font-style: italic;
+	color: #555;
+}
+img {
+	max-width: 100%;
+}

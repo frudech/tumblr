@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>0x4D</title>
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-modal.js"></script>
+		<script src="js/bootstrap-dropdown.js"></script>
+		<script src="js/bootstrap-transition.js"></script>
+
+		<style>
+			body {
+				padding-top: 20px;
+			}
+		</style>
+		<script>
+			$(function(){
+				$('.dropdown-toggle').dropdown();
+				$('#who').click(function(){
+					$('.dropdown-toggle').dropdown('toggle');
+					$('#me').modal('show');
+
+					return false;
+				});
+			});
+		</script>
+
+		<!-- Le styles -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/tumblr.css" rel="stylesheet">
+
+		<link href='http://fonts.googleapis.com/css?family=Roboto:regular|Droid+Serif|Noticia+Text' rel='stylesheet' type='text/css'>
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="navbar">
+				<div class="navbar-inner">
+
+					<div class="row">
+
+						<div class="span3">
+							<a class="brand" href="#">
+								0x4D
+							</a>
+
+							<ul class="nav">
+								<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Ich <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a id="who" data-toggle="modal" data-target="#me" href="#me">&Uuml;ber mich</a></li>
+									<li class="divider"></li>
+									<li><a href="#">auf Twitter</a></li>
+									<li><a href="#">auf Facebook</a></li>
+								</ul>
+								</li>
+
+								<li><a href="#"><i class="icon-question-sign icon-white"></i> Eine Frage stellen</a></li>
+							</ul>
+
+							<form class="navbar-search pull-right" style="margin-right: 40px;">
+								<input type="text" class="search-query" placeholder="Suche">
+							</form>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="modal hide fade" id="me">
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h3>Markus "bl1nk" Cisler</h3>
+			</div>
+			<div class="modal-body">
+				<img src="http://placehold.it/70x70" class="thumbnail pull-left" style="margin-right: 10px; margin-bottom: 10px;" alt=""/>
+				<p>20 Jahre alt. Informatik-Student an der Uni-Kassel. Technikinteressiert. Vollidiot. Bin auch auf <a href="#">Twitter</a> unterwegs.</p>
+				<p>Ich habe keine Ahnung was ich hier &uuml;berhaupt tu. Sollte es dir trotzdem gefallen, so kannst du gerne meinen <a href="#">RSS-Feed</a> abonnieren. Merci!</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-warning"><i class="icon-plus icon-white"></i> RSS abonnieren</a>
+				<a href="#" class="btn btn-success"><i class="icon-heart icon-white"></i> Bier f&uuml;r Markus</a>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div class="post">
+				<a class="" href="#"><h2>Oh Facebook Profil, wie sauber du doch bist.</h2></a>
+				<h6>2 weeks ago &middot; <a href="#">Kommentare</a></h6>
+
+				<!--				<center><img src="http://dl.dropbox.com/u/799600/tumblr/20120120_clean.png" alt=":/" class="thumbnail"/></center>-->
+
+				<p>Nahm mir die letzten Tage mal die Zeit und räumte meine Facebook Timeline auf, <strong>komplett</strong>. Das heißt: keinerlei Beiträge, Kommentare, Likes oder Fotos mehr vorhanden. Womit? <a href="https://market.android.com/details?id=com.worb.android.exfoliate" target="_blank">Hiermit</a>.</p>
+
+				<p>Exfoliate lässt einen alle seine Beiträge oder ähnliches bis zu einem gewünschten Zeitpunkt löschen, das schließt auch alle Beiträge auf Pinnwänden von Freunden und Seiten ein.</p>
+
+				<p><em>Funktionierte super. Gerne wieder. (9/10)</em></p>
+			</div>
+
+
+			<div class="post">
+				<a href="http://magicprefs.com/" target="_blank" ><h3>MagicPrefs &rarr;</h3></a>
+				<h6>2 days ago &middot; <a href="#"> Kommentare</a> &middot; <a href="#">Permalink</a></h6>
+				<blockquote>MagicPrefs is a free application for OS X which aims to improve the functionality and configuration options of the Apple Magic Mouse, Magic Trackpad and the MacBook glass trackpad.</blockquote>
+				<p>Verdammt praktisch eigentlich. Damit nutze ich meine Magic Mouse vielleicht auch mal. Vor allem Mission Control auf zwei-Finger-Hoch-wischen legen macht für mich mehr Sinn als zwei Mal mit zwei Fingern zu tappen.</p>		
+			</div>		
+
+			<h6><i class="icon-film"></i> 3 days ago &middot; <a href="#">1337 Kommentare</a> &middot; <a href="#">Permalink</a></h6>
+			<div class="post well">
+				<div class="video"><iframe width="500" height="281" src="http://www.youtube.com/embed/ShFAeNdiEiA?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe></div>
+				<p>Human Slingshot Slip and Slide - Vooray (by <a href="http://www.youtube.com/watch?v=ShFAeNdiEiA" target="_blank">devinsupertramp</a>)</p>
+				
+
+			</div>
+
+
+			<ul class="pager">
+				<li class="previous">
+				<a href="#">&larr; &Auml;lter</a>
+				</li>
+				<li>
+				<a href="#">Archiv</a>
+				</li>
+				<li class="next">
+				<a href="#">Neuer &rarr;</a>
+				</li>
+			</ul>
+
+		</div> <!-- /container -->
+
+	</body>
+</html>
