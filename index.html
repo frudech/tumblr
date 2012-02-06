@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
 		<meta charset="utf-8">
-		<title>0x4D</title>
+		<title>{Title}</title>
+
+		<link rel="shortcut icon" href="{Favicon}">
+		<link rel="alternate" type="application/rss+xml" href="{RSS}">
+		{block:Description}
+		<meta name="description" content="{MetaDescription}" />
+		{/block:Description}
 
 		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
 		<!--[if lt IE 9]>
@@ -32,15 +38,55 @@
 			});
 		</script>
 
-		<!-- Le styles -->
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/tumblr.css" rel="stylesheet">
 
-		<link href='http://fonts.googleapis.com/css?family=Roboto:regular|Droid+Serif|Noticia+Text' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Noticia+Text' rel='stylesheet' type='text/css'>
+
+		{block:IndexPage}
+		<meta property="og:title" content="{PlaintextTitle}"/>
+		<meta property="og:url" content="http://cslr.cc"/>
+		<meta property="og:image" content="http://assets.tumblr.com/images/logo.png"/>
+		<meta property="og:description" content="{MetaDescription}"/>
+		{/block:IndexPage}{block:PermalinkPage}{block:Posts}
+		{block:Text}<meta property="og:title" content="{block:PostTitle}{PlaintextPostTitle} {/block:PostTitle}"/>{/block:Text}
+		{block:Quote}<meta property="og:title" content="Quote: {block:PostSummary}{PlaintextPostSummary}{/block:PostSummary}"/>{/block:Quote}
+		{block:Link}<meta property="og:title" content="Link: {PlaintextName}"/>{/block:Link}
+		{block:Chat}<meta property="og:title" content="Chat: {block:Title}{PlaintextTitle}{/block:Title}"/>{/block:Chat}
+		{block:Photo}<meta property="og:title" content="Photo: {block:Caption}{PlaintextCaption}{/block:Caption}"/>
+		<meta property="og:image" content="{PhotoURL-500}"/>{/block:Photo}
+		{block:Audio}<meta property="og:title" content="Audio: {block:Caption}{PlaintextCaption}{/block:Caption}"/>{/block:Audio}
+		{block:Video}<meta property="og:title" content="Video: {block:Caption}{PlaintextCaption}{/block:Caption}"/>{/block:Video}
+		{/block:Posts}<meta property="og:url" content="{Permalink}"/>{/block:PermalinkPage}
+		<meta property="og:site_name" content="0x4D"/>
+		<meta property="fb:app_id" content="101766816613359"/>
+		<meta property="fb:admins" content="100000177753910"/>
+		<meta property="og:type" content="blog"/>
 
 	</head>
 
 	<body>
+
+		<!--Shitload of Facebook crap-->
+		<div id="fb-root"></div>
+		<script>
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId  : '101766816613359',
+					status : true, // check login status
+					cookie : true, // enable cookies to allow the server to access the session
+					xfbml  : true  // parse XFBML
+				});
+			};
+
+			(function() {
+				var e = document.createElement('script');
+				e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+				e.async = true;
+				document.getElementById('fb-root').appendChild(e);
+			}());
+		</script>	
+
 		<div class="container">
 			<div class="navbar">
 				<div class="navbar-inner">
@@ -48,8 +94,8 @@
 					<div class="row">
 
 						<div class="span3">
-							<a class="brand" href="#">
-								0x4D
+							<a class="brand" href="/">
+								{Title}
 							</a>
 
 							<ul class="nav">
@@ -58,16 +104,16 @@
 								<ul class="dropdown-menu">
 									<li><a id="who" data-toggle="modal" data-target="#me" href="#me">&Uuml;ber mich</a></li>
 									<li class="divider"></li>
-									<li><a href="#">auf Twitter</a></li>
-									<li><a href="#">auf Facebook</a></li>
+									<li><a href="http://twitter.com/bl2nk">auf Twitter</a></li>
+									<li><a href="http://facebook.com/go4more">auf Facebook</a></li>
 								</ul>
 								</li>
 
-								<li><a href="#"><i class="icon-question-sign icon-white"></i> Eine Frage stellen</a></li>
+								<li><a href="/ask"><i class="icon-question-sign icon-white"></i> Eine Frage stellen</a></li>
 							</ul>
 
-							<form class="navbar-search pull-right" style="margin-right: 40px;">
-								<input type="text" class="search-query" placeholder="Suche">
+							<form action="/search" method="get" class="navbar-search pull-right fuckingsearch">
+								<input type="text" name="q" value="{SearchQuery}" class="search-query" placeholder="Suche">
 							</form>
 						</div>
 
@@ -83,58 +129,98 @@
 				<h3>Markus "bl1nk" Cisler</h3>
 			</div>
 			<div class="modal-body">
-				<img src="http://placehold.it/70x70" class="thumbnail pull-left" style="margin-right: 10px; margin-bottom: 10px;" alt=""/>
-				<p>20 Jahre alt. Informatik-Student an der Uni-Kassel. Technikinteressiert. Vollidiot. Bin auch auf <a href="#">Twitter</a> unterwegs.</p>
-				<p>Ich habe keine Ahnung was ich hier &uuml;berhaupt tu. Sollte es dir trotzdem gefallen, so kannst du gerne meinen <a href="#">RSS-Feed</a> abonnieren. Merci!</p>
+				<img src="http://placehold.it/70x70" class="thumbnail pull-left fuckingphoto" alt=""/>
+				<p>20 Jahre alt. Informatik-Student an der Uni-Kassel. Technikinteressiert. Vollidiot. Bin auch auf <a href="http://twitter.com/bl2nk">Twitter</a> unterwegs.</p>
+				<p>Ich habe keine Ahnung was ich hier &uuml;berhaupt tu. Sollte es dir trotzdem gefallen, so kannst du gerne meinen <a href="/rss">RSS-Feed</a> abonnieren. Merci!</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn btn-warning"><i class="icon-plus icon-white"></i> RSS abonnieren</a>
+				<a href="/rss" class="btn btn-warning"><i class="icon-plus icon-white"></i> RSS abonnieren</a>
 				<a href="#" class="btn btn-success"><i class="icon-heart icon-white"></i> Bier f&uuml;r Markus</a>
 			</div>
 		</div>
 
 		<div class="container">
 
+			{block:Posts}
+
+			{block:Text}
 			<div class="post">
-				<a class="" href="#"><h2>Oh Facebook Profil, wie sauber du doch bist.</h2></a>
-				<h6>2 weeks ago &middot; <a href="#">Kommentare</a></h6>
+				{block:Title}
+				<a href="{Permalink}"><h2>{Title}</h2></a>
+				{/block:Title}
 
-				<!--				<center><img src="http://dl.dropbox.com/u/799600/tumblr/20120120_clean.png" alt=":/" class="thumbnail"/></center>-->
+				{block:Date}
+				<h6>
+					{TimeAgo} &middot; 
+					<a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a>
+				</h6>
+				{/block:Date}
 
-				<p>Nahm mir die letzten Tage mal die Zeit und räumte meine Facebook Timeline auf, <strong>komplett</strong>. Das heißt: keinerlei Beiträge, Kommentare, Likes oder Fotos mehr vorhanden. Womit? <a href="https://market.android.com/details?id=com.worb.android.exfoliate" target="_blank">Hiermit</a>.</p>
+				{Body}
 
-				<p>Exfoliate lässt einen alle seine Beiträge oder ähnliches bis zu einem gewünschten Zeitpunkt löschen, das schließt auch alle Beiträge auf Pinnwänden von Freunden und Seiten ein.</p>
-
-				<p><em>Funktionierte super. Gerne wieder. (9/10)</em></p>
+				{block:PermalinkPage}
+				<div id="fb"><fb:like href="{URLEncodedPermalink}" layout="button_count" send="true" width="500"></fb:like></div>
+				{/block:PermalinkPage}
 			</div>
+			{/block:Text}
 
-
+			{block:Link}
 			<div class="post">
-				<a href="http://magicprefs.com/" target="_blank" ><h3>MagicPrefs &rarr;</h3></a>
-				<h6>2 days ago &middot; <a href="#"> Kommentare</a> &middot; <a href="#">Permalink</a></h6>
-				<blockquote>MagicPrefs is a free application for OS X which aims to improve the functionality and configuration options of the Apple Magic Mouse, Magic Trackpad and the MacBook glass trackpad.</blockquote>
-				<p>Verdammt praktisch eigentlich. Damit nutze ich meine Magic Mouse vielleicht auch mal. Vor allem Mission Control auf zwei-Finger-Hoch-wischen legen macht für mich mehr Sinn als zwei Mal mit zwei Fingern zu tappen.</p>		
-			</div>		
+				<a href="{URL}" {Target}><h3>{Name} &rarr;</h3></a>
 
-			<h6><i class="icon-film"></i> 3 days ago &middot; <a href="#">1337 Kommentare</a> &middot; <a href="#">Permalink</a></h6>
+				{block:Date}
+				<h6>{TimeAgo} &middot; 
+					<a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; 
+					<a href="{Permalink}">Permalink</a>
+				</h6>
+				{/block:Date}
+
+				{block:Description}
+				{Description}
+				{/block:Description}
+
+			</div>	
+			{/block:Link}	
+
+			{block:Video}
+			{block:Date}
+			<h6><i class="icon-film"></i> {TimeAgo} &middot; 
+				<a href="{Permalink}"><fb:comments-count href="{Permalink}"></fb:comments-count> Kommentare</a> &middot; 
+				<a href="{Permalink}">Permalink</a>
+			</h6>
+			{/block:Date}
 			<div class="post well">
-				<div class="video"><iframe width="500" height="281" src="http://www.youtube.com/embed/ShFAeNdiEiA?wmode=transparent&autohide=1&egm=0&hd=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0&showsearch=0" frameborder="0" allowfullscreen></iframe></div>
-				<p>Human Slingshot Slip and Slide - Vooray (by <a href="http://www.youtube.com/watch?v=ShFAeNdiEiA" target="_blank">devinsupertramp</a>)</p>
-				
+				<div class="video">{Video-500}</div>
+
+				{block:Caption}
+				{Caption}
+				{/block:Caption}
 
 			</div>
+			{/block:Video}
+
+			{block:PermalinkPage}
+			<div><br/><fb:comments href="{URLEncodedPermalink}" width="100%"></fb:comments></div>
+			{/block:PermalinkPage}
+
+			{/block:Posts}
+
 
 
 			<ul class="pager">
+				{block:PreviousPage}
 				<li class="previous">
 				<a href="#">&larr; &Auml;lter</a>
 				</li>
+				{/block:PreviousPage}
 				<li>
 				<a href="#">Archiv</a>
 				</li>
+				{block:NextPage}
 				<li class="next">
 				<a href="#">Neuer &rarr;</a>
 				</li>
+				{/block:NextPage}
 			</ul>
 
 		</div> <!-- /container -->
